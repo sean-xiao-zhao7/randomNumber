@@ -11,7 +11,8 @@ const H1 = props => {
 
 const styles = StyleSheet.create({
     h1: {
-        fontSize: 22
+        fontSize: 22,
+        fontFamily: 'open-sans-bold'
     }
 });
 

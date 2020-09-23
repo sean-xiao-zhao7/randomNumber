@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Button, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Button, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import MyCard from '../components/MyCard';
 import H2 from '../components/H2';
 import Row from '../components/Row';
@@ -10,7 +10,7 @@ import { SecondaryColor } from '../constants/colors';
 const StartScreen = props => {
 
     const [number, setNumber] = useState('');
-    const validateNumberHandler = textInput => {
+    const validateNumberHandler = textInput => {       
         const validInput = textInput.replace(/[^0-9]/g, '');
         setNumber(validInput);
     };
@@ -21,7 +21,13 @@ const StartScreen = props => {
     // confirmed output
     let confirmedOutput;
     if (confirm) {
-    confirmedOutput = <Text style={{fontSize: 18}}>{finalNumber} is saved.</Text>
+        confirmedOutput = <MyCard>
+                <Text style={{fontSize: 18}}>{finalNumber} is chosen</Text>
+                <Button
+                    title='Start Game'
+                    onPress={() => props.onStartGame(finalNumber) }
+                />
+            </MyCard>
     }
 
     return (
@@ -43,7 +49,22 @@ const StartScreen = props => {
                     <Row>
                         <Button 
                             title={'Enter'}                        
-                            onPress={() => { setConfirm(true); setNumber(''); setFinalNumber(parseInt(number)) }}
+                            onPress={() => {                                                   
+                                if (isNaN(parseInt(number))) {                                    
+                                    Alert.alert('Invalid number enterd.', '', [{
+                                        text: 'Okay',
+                                        styles: 'desctructive',
+                                        onPress: () => {
+                                            setNumber(''); 
+                                            setConfirm(false)
+                                        }
+                                    }])    
+                                } else {
+                                    setConfirm(true);
+                                    setNumber('');
+                                    setFinalNumber(parseInt(number))
+                                }
+                             }}
                             color={SecondaryColor}
                         />
                         <Button 
