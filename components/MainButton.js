@@ -1,10 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native';
 import { PrimaryColor, SecondaryColor } from '../constants/colors';
 import globalStyles from '../constants/globalStyles';
 
 const MainButton = (props) => {
-    return <TouchableOpacity 
+    let ButtonComponent = TouchableOpacity;
+    if (Platform.OS === 'android' && Platform.Version >= 21) {
+        ButtonComponent = TouchableNativeFeedback;
+    }
+
+    return <ButtonComponent 
             onPress={props.onPress}
         >
         <View style={globalStyles.buttonContainer}>
@@ -12,7 +17,7 @@ const MainButton = (props) => {
                 {props.children}  
             </Text>    
         </View>    
-    </TouchableOpacity>
+    </ButtonComponent>
 };
 
 export default MainButton;

@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Platform, Text, StyleSheet } from 'react-native';
+
+// custom comps
 import H1 from '../components/H1';
 import { PrimaryColor } from '../constants/colors';
 

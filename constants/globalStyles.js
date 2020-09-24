@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { PrimaryColor, SecondaryColor } from './colors';
+import { Dimensions } from 'react-native';
 
 export default globalStyles = StyleSheet.create({
     image: {
@@ -7,9 +8,9 @@ export default globalStyles = StyleSheet.create({
         width: '100%',        
     },
     imageContainer: {
-        width: 200,
-        height: 200,
-        borderRadius: 200,
+        width: Dimensions.get('window').width / 2,
+        height: Dimensions.get('window').width / 2,
+        borderRadius: Dimensions.get('window').width / 4,
         borderWidth: 3,
         borderColor: '#bada55',    
         backgroundColor: '#bada55',
