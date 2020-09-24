@@ -1,16 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { PrimaryColor } from '../constants/colors';
+import { PrimaryColor, SecondaryColor } from '../constants/colors';
+import globalStyles from '../constants/globalStyles';
 
 const MainButton = (props) => {
     return <TouchableOpacity 
-            onPress={
-
-            }
+            onPress={props.onPress}
         >
-        <View>
-            <Text>
-                {props.children}    
+        <View style={globalStyles.buttonContainer}>
+            <Text style={globalStyles.buttonText}>
+                {props.children}  
             </Text>    
         </View>    
     </TouchableOpacity>

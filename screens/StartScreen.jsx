@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Button, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
+// custom comps
 import MyCard from '../components/MyCard';
 import H2 from '../components/H2';
 import Row from '../components/Row';
 import Container from '../components/Container';
 import MyTextInput from '../components/MyTextInput';
+import MainButton from '../components/MainButton';
+
+// custom consts
 import { SecondaryColor } from '../constants/colors';
 
 const StartScreen = props => {
-
     const [number, setNumber] = useState('');
     const validateNumberHandler = textInput => {       
         const validInput = textInput.replace(/[^0-9]/g, '');
@@ -23,10 +28,12 @@ const StartScreen = props => {
     if (confirm) {
         confirmedOutput = <MyCard>
                 <Text style={{fontSize: 18}}>{finalNumber} is chosen</Text>
-                <Button
-                    title='Start Game'
+                <MainButton                    
                     onPress={() => props.onStartGame(finalNumber) }
-                />
+                >
+                    <Ionicons name='md-checkmark' size={24} />
+                    <Text>Start Game!</Text>
+                </MainButton>
             </MyCard>
     }
 
@@ -47,8 +54,7 @@ const StartScreen = props => {
                         value={number}
                     />
                     <Row>
-                        <Button 
-                            title={'Enter'}                        
+                        <MainButton                                            
                             onPress={() => {                                                   
                                 if (isNaN(parseInt(number))) {                                    
                                     Alert.alert('Invalid number enterd.', '', [{
@@ -65,13 +71,14 @@ const StartScreen = props => {
                                     setFinalNumber(parseInt(number))
                                 }
                              }}
-                            color={SecondaryColor}
-                        />
-                        <Button 
-                            title={'Reset'}
+                        >
+                            <Text>Guess</Text>
+                        </MainButton>
+                        <MainButton 
                             onPress={() => { setNumber(''); setConfirm(false) }}
-                            color={SecondaryColor}
-                        />
+                        >
+                            <Text>Reset</Text>
+                        </MainButton>     
                     </Row>
                 </MyCard>
                 {confirmedOutput}

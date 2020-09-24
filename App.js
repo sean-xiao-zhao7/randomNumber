@@ -1,12 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
+
+// custom comps
 import Header from './components/Header';
+
+// custom screens
 import StartScreen from './screens/StartScreen';
 import GameScreen from './screens/GameScreen';
 import GameOverScreen from './screens/GameOverScreen';
-import * as Font from 'expo-font';
-import { AppLoading } from 'expo';
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -45,9 +49,9 @@ export default function App() {
   };
 
   let content = <StartScreen onStartGame={startGameHandler} />;
-  if (false && chosenNumber && numRounds <= 0) {
+  if (chosenNumber && numRounds <= 0) {
     content = <GameScreen userChoice={chosenNumber} onGameOver={setNumRounds} />;
-  } else if (true || numRounds > 0) {
+  } else if (numRounds > 0) {
     content = <GameOverScreen numRounds={numRounds} numTarget={chosenNumber} newGameHandler={newGameHandler} />;
   }
 

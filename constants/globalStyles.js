@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { PrimaryColor, SecondaryColor } from './colors';
 
 export default globalStyles = StyleSheet.create({
     image: {
@@ -14,5 +15,20 @@ export default globalStyles = StyleSheet.create({
         backgroundColor: '#bada55',
         overflow: 'hidden',
         margin: 10,
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 18,
+        fontFamily: 'open-sans-bold',
+    },
+    buttonContainer: {
+        margin: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        backgroundColor: PrimaryColor,
+        borderRadius: 10,       
+    },
+    list: {
+        flexDirection: 'row'
     }
 });

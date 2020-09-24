@@ -1,11 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button, Image } from 'react-native';
+
+// custom comps
 import Container from '../components/Container';
 import H1 from '../components/H1';
+import MainButton from '../components/MainButton';
 
 //styles
 import globalStyles from '../constants/globalStyles';
-n 
+
 const GameOverScreen = props => {
     return (
         <Container>
@@ -16,11 +19,13 @@ const GameOverScreen = props => {
             </View>
             <Text>Rounds guessed: {props.numRounds}</Text>
             <Text>The number was: {props.numTarget}</Text>
-            <Button title='Play again!' onPress={
+            <MainButton onPress={
                 () => {
                     props.newGameHandler();
                 }
-            } />
+            }>
+                <Text>Play again</Text>
+            </MainButton>
         </Container>
     );
 };
